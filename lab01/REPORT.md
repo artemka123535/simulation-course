@@ -40,7 +40,7 @@
 
 ---
 
-<img src="plot.png">
+<img src="plot.jpg">
 
 ---
 
