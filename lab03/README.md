@@ -26,7 +26,11 @@
 
 Вероятность возгорания дерева $P_{ignite}$ зависит от базовой горючести стадии его жизни и вектора ветра.
 
-Формула:$$P_{ignite} = P_{age} + \Delta P_{wind}$$где $P_{age}$ — базовая вероятность возгорания для разных деревьев, а $\Delta P_{wind}$ — модификатор, зависящий от направления ветра $\vec{W}$ и вектора к горящему соседу $\vec{D}$.
+Формула:
+
+$$P_{ignite} = P_{age} + \Delta P_{wind}$$
+
+где $P_{age}$ — базовая вероятность возгорания для разных деревьев, а $\Delta P_{wind}$ — модификатор, зависящий от направления ветра $\vec{W}$ и вектора к горящему соседу $\vec{D}$.
 
 Фрагмент кода:
 ```python
@@ -44,7 +48,9 @@ elif (wy == dy and wy != 0) or (wx == dx and wx != 0):
 
 Формула: 
 
-$Random(0, 1) < f$, где $f$ — вероятность удара молнии, задаваемая пользователем в GUI.
+$$Random(0, 1) < f$$
+
+где $f$ — вероятность удара молнии, задаваемая пользователем в GUI.
 
 Фрагмент кода:
 ```python
@@ -59,7 +65,9 @@ if state in [TREE_YOUNG, TREE_MEDIUM, TREE_OLD]:
 
 Формула: 
 
-$Random(0, 1) < p$, где $p$ — вероятность роста дерева, задаваемая пользователем в GUI.
+$$Random(0, 1) < p$$
+
+ где $p$ — вероятность роста дерева, задаваемая пользователем в GUI.
 
 Фрагмент кода:
 ```python
@@ -78,7 +86,7 @@ if state == EMPTY:
 
 Формула: 
 
-$TREE\_YOUNG \xrightarrow{p_{age}} TREE\_MEDIUM \xrightarrow{p_{age}} TREE\_OLD$.
+$$TREE\_YOUNG \xrightarrow{p_{age}} TREE\_MEDIUM \xrightarrow{p_{age}} TREE\_OLD$$
 
 Фрагмент кода:
 ```python
@@ -95,9 +103,9 @@ if state in [TREE_YOUNG, TREE_MEDIUM, TREE_OLD]:
 
 Формула: 
 
-$BURNING \to ASH$
+$$BURNING \to ASH$$
 
-$ASH \xrightarrow{p_{clear}} EMPTY$
+$$ASH \xrightarrow{p_{clear}} EMPTY$$
 
 Фрагмент кода:
 ```python
