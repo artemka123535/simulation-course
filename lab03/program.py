@@ -12,7 +12,7 @@ BURNING = 5
 WATER = 6
 
 COLORS = {
-    EMPTY: "#dbd7d2",       
+    EMPTY: "#744000",       
     ASH: "#4a4a4a",         
     TREE_YOUNG: "#00cc00",  
     TREE_MEDIUM: "#008200", 
@@ -71,7 +71,7 @@ class ForestFireWindModel:
 
         self.c_size = 600
         self.cell_w = self.c_size // self.size
-        self.canvas = tk.Canvas(self.root, width=self.c_size, height=self.c_size, bg="#dbd7d2")
+        self.canvas = tk.Canvas(self.root, width=self.c_size, height=self.c_size, bg="#744000")
         self.canvas.pack(side=tk.LEFT)
         self.draw_grid()
 
