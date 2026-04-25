@@ -5,7 +5,7 @@ from matplotlib.backends.backend_qtagg import FigureCanvasQTAgg as FigureCanvas
 from scipy.stats import chi2, norm
 from PyQt6.QtWidgets import (QApplication, QMainWindow, QWidget, QVBoxLayout, 
                              QHBoxLayout, QPushButton, QTableWidget, QTableWidgetItem, 
-                             QComboBox, QLabel, QSpinBox, QFrame, QHeaderView, QTabWidget)
+                             QComboBox, QLabel, QSpinBox, QFrame, QHeaderView, QTabWidget, QMessageBox)
 
 LIGHT_STYLE = """
     QMainWindow, QWidget { 
@@ -162,8 +162,10 @@ class ModernLabApp(QMainWindow):
 
         self.card_m_norm = StatCard("Математическое ожидание")
         self.card_v_norm = StatCard("Дисперсия")
+        self.card_chi_norm = StatCard("Критерий χ²")
         side_panel.addWidget(self.card_m_norm)
         side_panel.addWidget(self.card_v_norm)
+        side_panel.addWidget(self.card_chi_norm)
         side_panel.addStretch()
         
         layout.addLayout(side_panel, 1)
@@ -191,7 +193,8 @@ class ModernLabApp(QMainWindow):
             rows = self.table.rowCount()
             x = np.array([float(self.table.item(i, 0).text()) for i in range(rows)])
             p = np.array([float(self.table.item(i, 1).text()) for i in range(rows)])
-            p /= p.sum()
+            if p.sum()>1:
+                raise ValueError()
 
             samples = np.random.choice(x, size=n, p=p)
             
@@ -222,7 +225,10 @@ class ModernLabApp(QMainWindow):
             self.ax_d.grid(axis='y', linestyle='--', alpha=0.3)
             self.ax_d.legend()
             self.canvas_d.draw()
-        except: pass
+        except: 
+            msg = QMessageBox()
+            msg.setText("Сумма вероятностей не может быть больше 1")
+            msg.exec()
 
     def calculate_normal(self):
         n = self.n_norm.value()
